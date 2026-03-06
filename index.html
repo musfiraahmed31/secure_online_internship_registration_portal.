@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | PAF-IAST Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="portal-nav">
+        <div class="brand">PAF-IAST Internship Portal</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Dashboard</a>
+            <a href="#" style="color: #63b3ed;">Register</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="registration-card">
+            
+            <div class="card-header">
+                <h2>Student Registration</h2>
+                <p>Securely submit your details to access placement opportunities.</p>
+            </div>
+            
+            <form id="registrationForm" action="register.php" method="POST" enctype="multipart/form-data" novalidate class="portal-form">
+                
+                <h3 class="section-title">Identity Details</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="student_id">Student ID</label>
+                        <input type="text" id="student_id" name="student_id" class="form-control" placeholder="Enter ID (e.g; FA21-BCS-001)" required>
+                        <span class="error-msg" id="student_id_error">Invalid ID format.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="full_name">Full Name</label>
+                        <input type="text" id="full_name" name="full_name" class="form-control" placeholder="Enter your full name" required>
+                        <span class="error-msg" id="full_name_error">Name is required.</span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cnic">CNIC Number</label>
+                        <input type="text" id="cnic" name="cnic" class="form-control" placeholder="12345-1234567-1" required>
+                        <span class="error-msg" id="cnic_error">Invalid CNIC format.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" id="phone" name="phone" class="form-control" placeholder="03XXXXXXXXX" required>
+                        <span class="error-msg" id="phone_error">Invalid phone format.</span>
+                    </div>
+                </div>
+
+                <h3 class="section-title">Account Security</h3>
+                <div class="form-group">
+                    <label for="email">University Email Address</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your Email" required>
+                    <span class="error-msg" id="email_error">Valid email required.</span>
+                    <div id="email_status"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
+                        <span class="error-msg" id="password_error">Min 8 chars, 1 upper, 1 lower, 1 num, 1 special.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" id="confirm_password" class="form-control" placeholder="Enter Password" required>
+                        <span class="error-msg" id="confirm_error">Passwords do not match.</span>
+                    </div>
+                </div>
+
+                <h3 class="section-title">Academic Profile</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <select id="department" name="department" class="form-control" required>
+                            <option value="" disabled selected>Select your department...</option>
+                            <option value="Software Engineering">Software Engineering</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Artificial Intelligence">Artificial Intelligence</option>
+                            <option value="Information Security">Information Security</option>
+                        </select>
+                        <span class="error-msg" id="dept_error">Please select a department.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cgpa">Current CGPA</label>
+                        <input type="number" step="0.01" id="cgpa" name="cgpa" class="form-control" placeholder="0.00 - 4.00" required>
+                        <span class="error-msg" id="cgpa_error">Must be between 0.00 and 4.00.</span>
+                    </div>
+                </div>
+
+                <h3 class="section-title">Supporting Documents</h3>
+                <div class="form-group file-upload-wrapper">
+                    <label for="resume">Upload Resume / CV</label>
+                    <p style="font-size: 0.85rem; color: #718096;">Must be a PDF file, maximum size 2MB.</p>
+                    <input type="file" id="resume" name="resume" accept=".pdf" required>
+                    <span class="error-msg" id="resume_error" style="text-align: left;">Must be a valid PDF under 2MB.</span>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn-submit">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/validation.js"></script>
+    <script src="js/ajax_email.js"></script>
+</body>
+</html>

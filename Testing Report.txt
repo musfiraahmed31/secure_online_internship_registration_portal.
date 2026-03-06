@@ -1,0 +1,31 @@
+Security Analysis & Penetration Testing Report
+
+1. JavaScript Disabled Scenario (Client-Side Bypass)
+If a malicious user disables JavaScript in their browser, the Part A validation (Regex checks, tab transitions, and AJAX email verification) will not execute.
+
+Result: The browser will attempt to submit the raw, unvalidated form data directly to the server.
+
+Defense: The system remains 100% secure because of Part B (Server-Side Validation). The register.php script re-verifies every field (ID format, email, password strength, etc.) using PHP's preg_match and filter_var before any database interaction occurs. If the data is invalid, the server rejects the request and the database is never touched.
+
+2. Prevention of SQL Injection (SQLi)
+SQL Injection is an attack where a user inserts malicious SQL code into input fields to manipulate the database.
+
+Mechanism: This portal uses PHP Data Objects (PDO) with Prepared Statements.
+
+How it works: Instead of inserting user variables directly into a query string, we use placeholders (? or :name). The SQL command and the user data are sent to the MySQL server separately. This ensures that the database engine treats all user input strictly as "data" and never as executable "code".
+
+3. Prevention of Cross-Site Scripting (XSS)
+XSS occurs when an attacker tries to inject malicious JavaScript into the database so it runs in another user's (like an Admin's) browser.
+
+Mechanism: The system uses Output Escaping and Input Sanitization.
+
+How it works: All data received from the user is cleaned using htmlspecialchars() before being displayed back on any page. For example, if an attacker submits <script>alert(1)</script>, the system converts it to &lt;script&gt;, which renders as harmless text on the screen instead of executing as a script.
+
+4. File Upload Exploit Prevention (MIME-Type Spoofing)
+A common attack is renaming a malicious script (e.g., shell.php) to shell.pdf to bypass basic file extension filters.
+
+Result: The system will detect and block this file.
+
+How it works: The PHP backend does not trust the file extension provided by the user. Instead, it uses the finfo_file() function to inspect the MIME-Type (the actual binary content) of the file.
+
+Defense: If the internal signature of the file does not match a true application/pdf, the server kills the process and deletes the temporary file immediately. Furthermore, an .htaccess file is placed in the uploads/ directory to disable PHP execution, ensuring that even if a script were somehow uploaded, it could never run.
