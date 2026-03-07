@@ -1,4 +1,4 @@
-⭐ Secure Multi-Level Form Validation and Data Integrity System
+⭐ Secure_Multi-Level_Form_Validation_and_Data_Integrity_System
 
 A Secure Online Internship Registration Portal developed using PHP, MySQL, JavaScript, and AJAX.
 This project demonstrates multi-level validation and secure web application practices to protect against common vulnerabilities such as SQL Injection, Cross-Site Scripting (XSS), duplicate registrations, and malicious file uploads.
