@@ -28,6 +28,7 @@ Students must provide the following information:
 * Department
 
 
+
 Resume Upload (PDF only)
 
 The system ensures secure validation and data integrity before storing information in the database.
